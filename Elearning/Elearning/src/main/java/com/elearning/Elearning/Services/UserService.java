@@ -18,14 +18,14 @@ public class UserService {
 
     }
 
-    public boolean LoginAuth(LoginRequest loginRequest) {
+    public User LoginAuth(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if(user!=null){
             if(user.getPassword().equals(loginRequest.getPassword())){
-                return true;
+                return user;
             }
         }
-        return false;
+        return null;
     }
 
     public boolean checkAlreadyExist(String email) {

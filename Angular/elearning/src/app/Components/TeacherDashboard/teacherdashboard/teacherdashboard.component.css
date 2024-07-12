@@ -1,0 +1,112 @@
+#a{
+    margin: auto;
+   }
+   .card1 {
+       background-color: #fff;
+       border-radius: 8px;
+       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+       transition: box-shadow 0.3s ease;
+       margin: 20px;
+       padding: 20px;
+       width: 350px;
+       height: 790px;
+       position: absolute;
+       left: 70%;
+       top:10%;
+   }
+   
+   .card1:hover {
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+       padding: 1rem;
+   }
+   
+   .container {
+       padding: 0;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+   }
+   
+   h2 {
+       color: #0072c6;
+       font-size: 1.8rem;
+       margin-bottom: 1rem;
+   }
+   
+   a {
+       color: #333;
+       text-decoration: none;
+       font-size: 1.2rem;
+       line-height: 1.6;
+       transition: background-color 0.3s ease, color 0.3s ease;
+       position: relative;
+       padding-left: 1rem;
+   }
+   
+   a:hover {
+       color: #fff;
+       background-color: #ff6347; /* Red-orange color */
+       box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.5); /* Red-orange box shadow */
+       padding: 1rem;
+       
+   }
+   
+   a::before {
+       content: '';
+       position: absolute;
+       top: -3px;
+       left: -3px;
+       right: -3px;
+       bottom: -3px;
+       z-index: -1;
+       border-radius: 8px;
+       background-color: transparent;
+       transition: background-color 0.3s ease;
+   }
+   
+   a:hover::before {
+       background-color: #ff6347; /* Red-orange color */
+   }
+   
+   .Footer {
+       margin: 0;
+       font-family: Arial, sans-serif;
+       display: flex;
+       flex-direction: column;
+       margin-top: 7%;
+        /* Ensure full viewport height */
+   }
+   
+   footer {
+       background-color: #333;
+       color: #fff;
+       padding: 20px 0;
+       text-align: center;
+      /* Push footer to the bottom */
+   }
+   
+   .footer-content {
+       display: flex;
+       justify-content: space-around;
+       flex-wrap: wrap;
+   }
+   
+   .footer-section {
+       flex: 1;
+       margin: 0 20px;
+   }
+   
+   .footer-section h3 {
+       font-size: 1.2rem;
+       margin-bottom: 10px;
+   }
+   
+   .footer-section p {
+       font-size: 1rem;
+       line-height: 1.6;
+   }
+   
+   .footer-bottom {
+       
+   }

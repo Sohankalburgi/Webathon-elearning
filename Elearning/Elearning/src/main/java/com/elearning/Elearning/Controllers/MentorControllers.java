@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class MentorControllers {
@@ -40,9 +41,10 @@ public class MentorControllers {
 
     @PostMapping("/mentor/{id}/addCourse")
     public  ResponseEntity<ResponseMessage> addCoursebyMentor(@PathVariable Long id,
-                                                              @RequestBody Course course){
+                                                              @RequestBody Course course, @RequestPart MultipartFile file){
         try{
             System.out.println(course.toString());
+            course.setThumbnail(file.getBytes());
             mentorService.addCourse(id,course);
             return new ResponseEntity<>(new ResponseMessage("Created"),HttpStatus.CREATED);
         }catch (Exception e){

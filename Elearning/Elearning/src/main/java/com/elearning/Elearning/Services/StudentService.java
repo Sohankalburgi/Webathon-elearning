@@ -18,11 +18,11 @@ public class StudentService {
     @Autowired
     private UserRepository userRepository;
 
-    public void createStudent(Long id, Student student) throws Exception {
+    public void createStudent(String id, Student student) throws Exception {
 
-            Optional<User> user = userRepository.findById(id);
-            if (user.isPresent()) {
-                student.setUser(user.get());
+            User user = userRepository.findByEmail(id);
+            if (user!=null) {
+                student.setUser(user);
                 studentRepository.save(student);
             }
             else{

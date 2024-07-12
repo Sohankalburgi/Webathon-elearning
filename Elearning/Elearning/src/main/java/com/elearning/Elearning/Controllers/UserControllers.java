@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/user")
 public class UserControllers {
@@ -32,7 +32,7 @@ public class UserControllers {
     }
 
     @PostMapping("/login")
-    public boolean loginUser(@RequestBody LoginRequest loginRequest){
+    public User loginUser(@RequestBody LoginRequest loginRequest){
         return userService.LoginAuth(loginRequest);
     }
 

@@ -1,15 +1,18 @@
 package com.elearning.Elearning.Controllers;
 
+import com.elearning.Elearning.Classes.ResponseMessage;
 import com.elearning.Elearning.Entities.Course;
 import com.elearning.Elearning.Entities.CourseStatus;
+import com.elearning.Elearning.Entities.Video;
 import com.elearning.Elearning.Repositories.CourseRepository;
 import com.elearning.Elearning.Services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 public class CourseControllers {
@@ -25,6 +28,26 @@ public class CourseControllers {
         }
         catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/course/{id}/uploadvideofile")
+    public ResponseEntity<?> uploadVideoFile(@PathVariable Long id, @RequestPart MultipartFile file){
+        try{
+            courseService.uploadVideo(id,file);
+            return new ResponseEntity<>(new ResponseMessage("File Uploaded"),HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(new ResponseMessage(e.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/course/{id}/downloadvideo")
+    public ResponseEntity<?> downloadFile(@PathVariable Long id){
+        try{
+            List<Video> video = courseService.downloadAllFile(id);
+            return new ResponseEntity(video,HttpStatus.FOUND);
+        }catch (Exception e){
+            return new ResponseEntity(new ResponseMessage(e.getMessage()),HttpStatus.NOT_FOUND);
         }
     }
 

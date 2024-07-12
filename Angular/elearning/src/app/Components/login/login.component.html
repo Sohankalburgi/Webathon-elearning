@@ -1,0 +1,41 @@
+<div class="container mt-4  " id="container">
+  <div class="form-container sign-up-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+      <h1>Create Account</h1>
+      <input type="email" class="form-control my-2" formControlName="email" placeholder="Email" required>
+      <input type="password" class="form-control my-2" placeholder="Password" formControlName="password" required>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select class="form-control" formControlName="role" id="role" required>
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mt-3">Sign Up</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitlogin()"> 
+      <h1>Log In</h1>
+      <input type="email" class="form-control my-2" formControlName="email" placeholder="Email" required>
+      <input type="password" class="form-control my-2" formControlName="password" placeholder="Password" required>
+      <a href="#" class="my-2">Forgot your password?</a>
+      <button type="submit" class="btn btn-primary btn-block mt-3">Log In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="btn btn-outline-light btn-block" (click)="onSignIn()">Log In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="btn btn-outline-light btn-block" (click)="onSignUp()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

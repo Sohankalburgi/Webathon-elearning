@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class StudentControllers {
 
     @Autowired
@@ -18,11 +19,11 @@ public class StudentControllers {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user/{id}/student/new")
-    public ResponseEntity<ResponseMessage> createStudent(@PathVariable Long id,
+    @PostMapping("/user/{emailid}/student/new")
+    public ResponseEntity<ResponseMessage> createStudent(@PathVariable String emailid,
                                                          @RequestBody Student student){
         try{
-            studentService.createStudent(id,student);
+            studentService.createStudent(emailid,student);
             return new ResponseEntity<>(new ResponseMessage("Created"), HttpStatus.CREATED);
         }
         catch (Exception e){
@@ -34,6 +35,7 @@ public class StudentControllers {
     public  ResponseEntity<?> getOneStudentById(@PathVariable Long id){
         try{
             Student student = studentService.getOneStudentById(id);
+
             return new ResponseEntity<>(student,HttpStatus.FOUND);
         }
         catch (Exception e){

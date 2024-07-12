@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        
+        <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+            <h4>Student Registration Form</h4>
+          <div class="form-group">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" formControlName="studentName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="collegeName">College Name:</label>
+            <input type="text" id="collegeName" formControlName="collegeName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="qualification">Qualification:</label>
+            <input type="text" id="qualification" formControlName="qualification" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" formControlName="location" class="form-control" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block mt-3 w-100" [disabled]="!studentForm.valid">Register</button>
+        </form>
+    </div>
+      
+    </div>
+  </div>
+  

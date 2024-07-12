@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+:host {
+    background-image: url(https://th.bing.com/th/id/R.2faa1b9cf2d0988a9b25cbfefd08cab8?rik=kmkM4IEKVNTm9A&riu=http%3a%2f%2fclipartmag.com%2fimages%2femployment-clipart-41.jpg&ehk=DU35FiPu9z05PFDqFK1aDvux3Thj8B37IzPgUQ6gdOg%3d&risl=&pid=ImgRaw&r=0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    margin: 0;
+}
+
+h2 {
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    
+}
+
+.box{
+    border: #FF4B2B 1pt solid;
+    background-color: #FF4B2B;
+    
+    padding-top: 2%;
+    padding-bottom: 1.5%  ;
+}
+
+form {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    padding: 30px;
+    width: 100%;
+    margin-left: 5%;
+    max-width: 500px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 5%;
+}
+
+.btn-primary {
+    background-color: #FF4B2B;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 45px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.btn-primary:hover {
+    background-color: #FF416C;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+.btn-primary:focus {
+    outline: none;
+}
