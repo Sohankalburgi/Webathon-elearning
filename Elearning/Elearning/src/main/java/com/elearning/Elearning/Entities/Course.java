@@ -34,7 +34,7 @@ public class Course {
 
     @JsonIgnore
     @JsonIgnoreProperties
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mentor")
     private Mentor mentor;
 
@@ -42,6 +42,6 @@ public class Course {
     @Column(name = "thumbnail",columnDefinition = "LONGBLOB")
     private byte[] thumbnail;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "course")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
     private List<Video> videos;
 }

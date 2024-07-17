@@ -5,21 +5,21 @@
         <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
             <h4>Student Registration Form</h4>
           <div class="form-group">
-            <label for="studentName">Student Name:</label>
-            <input type="text" id="studentName" formControlName="studentName" class="form-control" required>
+            <label for="name">Student Name:</label>
+            <input type="text" id="name" formControlName="name" class="form-control" required>
           </div>
           <div class="form-group">
-            <label for="collegeName">College Name:</label>
-            <input type="text" id="collegeName" formControlName="collegeName" class="form-control" required>
-          </div>
+            <label for="highestqualification">Qualification:</label>
+            <input type="text" id="highestqualification" formControlName="highestqualification" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="institutename">College Name:</label>
+          <input type="text" id="institutename" formControlName="institutename" class="form-control" required>
+        </div>
           <div class="form-group">
-            <label for="dateOfBirth">Date of Birth:</label>
-            <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="qualification">Qualification:</label>
-            <input type="text" id="qualification" formControlName="qualification" class="form-control" required>
-          </div>
+              <label for="dateofbirth">Date of Birth:</label>
+              <input type="date" id="dateofbirth" formControlName="dateofbirth" class="form-control" required>
+            </div>
           <div class="form-group">
             <label for="location">Location:</label>
             <input type="text" id="location" formControlName="location" class="form-control" required>
@@ -31,4 +31,3 @@
       
     </div>
   </div>
-  

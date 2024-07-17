@@ -33,4 +33,9 @@ export class LoginServiceService {
     return this.http.post(`${this.baseUrl}/user/login`,user,this.httpOptions);
   }
 
+  getUserId(email:any):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(`${this.baseUrl}/user/getUserId/${email}`,this.httpOptions);
+  }
+
 }

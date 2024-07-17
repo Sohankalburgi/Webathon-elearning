@@ -35,4 +35,15 @@ public class UserService {
         }
         return false;
     }
+
+    public Long getId(String email) {
+        User id = userRepository.findByEmail(email);
+        if(id!=null) {
+            return id.getId();
+        }
+        else{
+            return -1l;
+        }
+
+    }
 }

@@ -23,7 +23,7 @@ public class Video {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] fileData;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     @JsonIgnoreProperties
     private Course course;

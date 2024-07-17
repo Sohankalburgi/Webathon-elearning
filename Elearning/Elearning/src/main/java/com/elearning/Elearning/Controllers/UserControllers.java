@@ -41,5 +41,10 @@ public class UserControllers {
         return userService.checkAlreadyExist(email);
     }
 
+    @GetMapping("/getUserId/{email}")
+    public Long userId(@PathVariable String email){
+        return  userService.getId(email);
+    }
+
 
 }

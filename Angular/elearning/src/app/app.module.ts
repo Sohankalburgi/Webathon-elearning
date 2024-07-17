@@ -12,6 +12,9 @@ import { DashboardComponent } from './Components/dashboard/dashboard/dashboard.c
 import { CourselComponent } from './Components/Coursel/coursel/coursel.component';
 import { TeacherdashboardComponent } from './Components/TeacherDashboard/teacherdashboard/teacherdashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CourseregisterComponent } from './Components/CoursesRegister/courseregister/courseregister.component';
+import { SearchComponent } from './Components/Search/search/search.component';
+import { VideoplayComponent } from './Components/videoplay/videoplay/videoplay.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     CourselComponent,
     TeacherdashboardComponent,
+    CourseregisterComponent,
+    SearchComponent,
+    VideoplayComponent,
   
   ],
   imports: [

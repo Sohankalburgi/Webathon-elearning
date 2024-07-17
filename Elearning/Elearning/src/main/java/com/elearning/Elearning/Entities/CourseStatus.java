@@ -24,7 +24,7 @@ public class CourseStatus {
 
     private int status;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentId")
     private Student student;
 

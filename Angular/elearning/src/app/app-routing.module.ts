@@ -5,6 +5,9 @@ import { StudentregisterComponent } from './Components/StudentRegister/studentre
 import { TeacherRegisterComponent } from './Components/TeacherRegister/teacher-register/teacher-register.component';
 import { DashboardComponent } from './Components/dashboard/dashboard/dashboard.component';
 import { TeacherdashboardComponent } from './Components/TeacherDashboard/teacherdashboard/teacherdashboard.component';
+import { CourseregisterComponent } from './Components/CoursesRegister/courseregister/courseregister.component';
+import { SearchComponent } from './Components/Search/search/search.component';
+import { VideoplayComponent } from './Components/videoplay/videoplay/videoplay.component';
 
 const routes: Routes = [
   {
@@ -20,12 +23,28 @@ const routes: Routes = [
     component:TeacherRegisterComponent
   },
   {
-    path:'dashboard/:id',
+    path:'dashboard',
     component:DashboardComponent
   },
   {
     path:'teacherdash/:id',
     component:TeacherdashboardComponent
+  },
+  {
+    path:'teacherdash/:id/courseregister',
+    component:CourseregisterComponent
+  },
+  {
+    path:'dashboard/:id',
+    component:DashboardComponent
+  },
+  {
+    path:'search/:term',
+    component:SearchComponent
+  },
+  {
+    path:'video/:courseId',
+    component:VideoplayComponent
   }
 
 ];

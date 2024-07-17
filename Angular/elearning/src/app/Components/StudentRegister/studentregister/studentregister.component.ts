@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StudentserviceService } from '../Services/studentservice.service';
+import { LoginServiceService } from '../../login/Services/login-service.service';
 
 @Component({
   selector: 'app-studentregister',
@@ -10,13 +12,15 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentregisterComponent implements OnInit{
   studentForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private router:ActivatedRoute) {
+  constructor(private fb: FormBuilder,private router:ActivatedRoute,private studentservice:StudentserviceService,
+    private route:Router,private loginservice:LoginServiceService
+  ) {
     this.studentForm = this.fb.group({
-      studentName: ['', Validators.required],
-      collegeName: ['', Validators.required],
-      qualification: ['', Validators.required],
+      name: ['', Validators.required],
+      highestqualification: ['', Validators.required],
+      institutename: ['', Validators.required],
+      dateofbirth: ['', Validators.required],
       location:['', Validators.required],
-      dateOfBirth: ['', Validators.required],
     });
   }
   email : any|null;
@@ -30,7 +34,18 @@ export class StudentregisterComponent implements OnInit{
   onSubmit() {
     if (this.studentForm.valid) {
       console.log('Registration Data:', this.studentForm.value);
-      // Add your registration logic here
+      this.studentservice.registerStudent(this.studentForm.value,this.email).subscribe(data=>{
+        if(data){
+          alert("Registration succesful")
+          
+          this.loginservice.getUserId(this.email).subscribe(res=>{
+            sessionStorage.setItem('userId',res)
+            this.route.navigate([`/dashboard/${res}`])
+          })
+          
+        }
+      });
+      
     }
   }
 }

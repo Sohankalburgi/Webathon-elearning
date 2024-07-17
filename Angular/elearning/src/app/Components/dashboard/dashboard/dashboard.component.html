@@ -4,17 +4,23 @@
 
 <div class="row mt-3 mx-2">
     <div class="col-8 card shadow p-3">
-    <h4 class="card-title mb-3 mt-2">Course Registered</h4>
-    <div class="card" style="width: 18rem;">
-        <img src="https://droidmodders.com/content/images/2022/01/online-education-jpeg-1024x454.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Online Course</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary w-100">Start</a>
+      <h4 class="card-title mb-3 mt-2">Course Registered</h4>
+      <div class="scrolling-wrapper">
+        <div *ngFor="let course of courses; let i = index" class="card" style="width: 18rem; display: inline-block; margin: 10px;">
+          <img [src]="course.course.thumbnail" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Course Id: {{ course.course.courseId }}</h5>
+            <h5 class="card-title">Course Name: {{ course.course.coursename }}</h5>
+            <p class="card-text"><strong>Course Duration: {{ course.course.courseduration }} Hours</strong></p>
+            <p class="card-text"><strong>Course Completion: {{ course.status}} %</strong></p>
+            <a  class="btn btn-primary w-100" routerLink="/video/{{course.course.courseId}}">Open</a>
+            
+          </div>
         </div>
       </div>
     </div>
 </div>
+
 <div class="card1">
     <div class="container">
         <h2>Trending Topics</h2>
@@ -28,6 +34,19 @@
         <a href="https://en.wikipedia.org/wiki/Cryptocurrency">Cryptocurrency</a><br>
     </div>
 </div>
+
+<!-- Button or Icon to open Chatbot -->
+<button (click)="toggleChatbot()" class="btn btn-info mx-4 " style="width: 65%;">Open Chatbot</button>
+
+<!-- Chatbot iframe -->
+<iframe
+    *ngIf="isChatbotVisible"
+    src="https://www.chatbase.co/chatbot-iframe/czmTlrHRIZCnATP_LEo1U"
+    width="50%"
+    style="height: 100%; min-height: 300px"
+    frameborder="2" class="mx-3"
+></iframe>
+
 <div class="Footer">
     <footer>
         <div class="footer-content">
@@ -49,13 +68,3 @@
         </div>
     </footer>
 </div>
-
-
-
-
-
-
-
-
-
-

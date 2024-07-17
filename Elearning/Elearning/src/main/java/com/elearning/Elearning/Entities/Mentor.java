@@ -30,7 +30,7 @@ public class Mentor {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "mentor")
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "mentor")
     private List<Course> courses = new ArrayList<>();
 
 

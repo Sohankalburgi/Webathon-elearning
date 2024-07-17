@@ -3,9 +3,11 @@ package com.elearning.Elearning.Services;
 import com.elearning.Elearning.Entities.Course;
 import com.elearning.Elearning.Entities.CourseStatus;
 import com.elearning.Elearning.Entities.Student;
+import com.elearning.Elearning.Entities.User;
 import com.elearning.Elearning.Repositories.CourseRepository;
 import com.elearning.Elearning.Repositories.CourseStatusRepository;
 import com.elearning.Elearning.Repositories.StudentRepository;
+import com.elearning.Elearning.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +21,21 @@ public class CourseStatusService {
     private CourseStatusRepository courseStatusRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private StudentRepository studentRepository;
 
     @Autowired
     private CourseRepository courseRepository;
 
     public void registerCourseByStudent(Long id, Long courseId) throws Exception{
-        Optional<Student> student = studentRepository.findById(id);
+        Student student = studentRepository.findAllByUserId(id);
         Optional<Course> course = courseRepository.findById(courseId);
 
-        if(student.isPresent() && course.isPresent()){
+        if(student!=null){
             CourseStatus courseStatus = new CourseStatus();
-            courseStatus.setStudent(student.get());
+            courseStatus.setStudent(student);
             courseStatus.setCourse(course.get());
             courseStatus.setStatus(0);
             courseStatusRepository.save(courseStatus);
@@ -40,7 +45,8 @@ public class CourseStatusService {
     }
 
     public List<CourseStatus> getAllCoursesregistered(Long id) throws Exception{
-        List<CourseStatus> courses = courseStatusRepository.findAllByStudentId(id);
+        Student student = studentRepository.findAllByUserId(id);
+        List<CourseStatus> courses = courseStatusRepository.findAllByStudentId(student.getId());
         if(!courses.isEmpty()){
             return courses;
         }

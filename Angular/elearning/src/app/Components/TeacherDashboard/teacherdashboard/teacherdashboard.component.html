@@ -2,19 +2,26 @@
     <img class="img-fluid h-50 col-8 shadow-img" id="a" src="https://droidmodders.com/content/images/2022/01/online-education-jpeg-1024x454.jpg" alt="">
 </div>
 
+<!-- course-list.component.html -->
+<!-- course-list.component.html -->
 <div class="row mt-3 mx-2">
     <div class="col-8 card shadow p-3">
-    <h4 class="card-title mb-3 mt-2">Course Uploaded</h4>
-    <div class="card" style="width: 18rem;">
-        <img src="https://droidmodders.com/content/images/2022/01/online-education-jpeg-1024x454.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Online Course</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary w-100" >Open</a>
+      <h4 class="card-title mb-3 mt-2">Course Uploaded</h4> 
+      <button class="btn btn-success" routerLink="/teacherdash/{{userId}}/courseregister">Add Course</button>   
+      <div class="scrolling-wrapper">
+        <div *ngFor="let course of courses; let i = index" class="card" style="width: 18rem; display: inline-block; margin: 10px;">
+          <img src="{{course.thumbnail}}" class="card-img-top" alt="..."> <!-- Corrected the binding syntax -->
+          <div class="card-body">
+            <h5 class="card-title">Course Id: {{ course.courseId }}</h5>
+            <h5 class="card-title">Course Name: {{ course.coursename }}</h5>
+            <p class="card-text"><strong>Course Duration: {{ course.courseduration }} Hours</strong></p>
+            <a  class="btn btn-primary w-100" routerLink="/video/{{course.courseId}}">Open</a>
+          </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
+  
 <div class="card1">
     <div class="container">
         <h2>Trending Topics</h2>

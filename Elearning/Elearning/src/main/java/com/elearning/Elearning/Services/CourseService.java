@@ -52,13 +52,20 @@ public class CourseService {
         Optional<Course> course = courseRepository.findById(id);
         if(course.isPresent()){
             List<Video> videos = course.get().getVideos();
-            for(int i=0;i< videos.size();i++){
-                videos.get(i).setFileData(FileUtils.decompressFile(videos.get(i).getFileData()));
-            }
+
             return videos;
         }
         else {
             throw new Exception("Not Found or Error");
         }
+    }
+
+    public List<Course> getAllCoursesById(Long userId) {
+        List<Course> courses = (List<Course>) courseRepository.findCoursesByUserId(userId);
+        return courses;
+    }
+
+    public List<Course> getAllcoursebySearch(String search) {
+        return courseRepository.findByCourseNameContaining(search);
     }
 }

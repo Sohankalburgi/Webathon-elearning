@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
     console.log(this.registerForm.value);
     const email = this.registerForm.value.email;
     this.loginService.checkuser(this.registerForm.value.email).subscribe(data=>{
+      console.log(data)
       if(data==false){
         this.loginService.registerUser(this.registerForm.value).subscribe(res=>{
           console.log(res)
@@ -80,7 +81,9 @@ export class LoginComponent implements OnInit {
     console.log(data)
     if(data){
       alert("Login Succesful")
+      sessionStorage.setItem("userId",data.id);
       if(data.role=='student'){
+      
       this.router.navigate([`/dashboard/${data.id}`])
       }
       else{

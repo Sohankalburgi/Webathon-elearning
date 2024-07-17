@@ -27,10 +27,11 @@
           <!-- Green dot for logged-in status -->
           <!-- <span *ngIf="isLoggedIn" class="green-dot"></span> -->
         </div>
-        <form class="d-flex" role="search">
-            <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-warning" type="submit">Search</button>
-          </form>
+        <a class="nav-link" (click)="logout()"   routerLinkActive="active">Logout</a>
+        <form class="d-flex mx-3" role="search" (submit)="onSubmit(searchInput.value)">
+          <input #searchInput class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-warning" type="submit">Search</button>
+        </form>
       </div>
     </nav>
   </div>

@@ -7,7 +7,9 @@ import com.elearning.Elearning.Entities.Video;
 import com.elearning.Elearning.Repositories.CourseRepository;
 import com.elearning.Elearning.Services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class CourseControllers {
 
     @Autowired
@@ -30,6 +33,27 @@ public class CourseControllers {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/getImage/{id}")
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws Exception {
+        // retrieve the image from the database or file system
+        byte[] imageBytes = courseService.getCourseById(id).getThumbnail();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/allcourse/{userId}")
+    public List<Course> getAllcourse(@PathVariable Long userId){
+       return courseService.getAllCoursesById(userId);
+    }
+
+    @GetMapping("/getallcourse/{search}")
+    public List<Course> getAllcoursebysearch(@PathVariable String search){
+        return courseService.getAllcoursebySearch(search);
+    }
+
 
     @PostMapping("/course/{id}/uploadvideofile")
     public ResponseEntity<?> uploadVideoFile(@PathVariable Long id, @RequestPart MultipartFile file){
