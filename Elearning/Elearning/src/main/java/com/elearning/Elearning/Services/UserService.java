@@ -1,10 +1,14 @@
 package com.elearning.Elearning.Services;
 
 import com.elearning.Elearning.Classes.LoginRequest;
+import com.elearning.Elearning.Classes.ResponseMessage;
 import com.elearning.Elearning.Entities.User;
 import com.elearning.Elearning.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -45,5 +49,16 @@ public class UserService {
             return -1l;
         }
 
+    }
+
+    public String getRole(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
+        
+        if(user.isPresent()){
+            return user.get().getRole();
+        }
+        else{
+            return null;
+        }
     }
 }

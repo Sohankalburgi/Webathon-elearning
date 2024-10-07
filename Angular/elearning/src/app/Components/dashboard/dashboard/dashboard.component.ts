@@ -13,8 +13,9 @@ export class DashboardComponent {
   userId : any;
   ngOnInit(): void {
     this.userId = sessionStorage.getItem('userId')
+    if(this.userId!=null){
     this.getCourses();
-    
+    }
   }
 
   getCourses(): void {

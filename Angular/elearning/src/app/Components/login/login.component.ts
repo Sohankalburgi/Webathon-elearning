@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginServiceService } from './Services/login-service.service';
 import { Router } from '@angular/router';
+import { AuthserviceService } from '../../services/authservice.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   emailPattern: string = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
 
   constructor(private renderer: Renderer2, private el: ElementRef,private fb : FormBuilder,
-    private loginService:LoginServiceService, private router:Router) {
+    private loginService:LoginServiceService, private router:Router,private authService : AuthserviceService) {
     this.loginForm = this.fb.group({
       'email': [null, [Validators.required, Validators.email,Validators.pattern(this.emailPattern)]],
       'password': [null, [Validators.required, Validators.minLength(8),Validators.pattern(this.passwordPattern)]],
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit {
         alert("User already Exists Please login")
       }
     })
-    
+  
 
   }
     
@@ -82,6 +83,7 @@ export class LoginComponent implements OnInit {
     if(data){
       alert("Login Succesful")
       sessionStorage.setItem("userId",data.id);
+      this.authService.login(data.id);
       if(data.role=='student'){
       
       this.router.navigate([`/dashboard/${data.id}`])

@@ -9,9 +9,9 @@
             <div class="card-body">
               <h5 class="card-title">Course Id: {{ course.courseId }}</h5>
               <h5 class="card-title">Course Name: {{ course.coursename }}</h5>
-              <p class="card-text"><strong>Course Duration: {{ course.courseduration }} Hours</strong></p>
-              <p class="card-text"><strong>Course Description: {{ course.coursedescription }}</strong></p>
-              <button  class="btn btn-primary" (click)="registercoursebystudent(course.courseId)" >Register</button>
+              <h5 class="card-title">Course Duration: {{ course.courseduration }} Hours</h5>
+              <h5 class="card-title mb-3">Course Resources: {{ course.videos.length }} Resources</h5>
+              <button  class="btn btn-primary btn-lg" (click)="registercoursebystudent(course.courseId)" >Register</button>
             </div>
           </div>
         </div>

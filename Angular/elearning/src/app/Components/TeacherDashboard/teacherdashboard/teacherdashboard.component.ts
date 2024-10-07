@@ -28,13 +28,6 @@ export class TeacherdashboardComponent implements OnInit {
         console.log(res)
         this.courses = res.data.courses;
         console.log(this.courses)
-        for(let course of this.courses){
-           this.teacherservice.getCourseImage(course.courseId).then(data=>{
-            const blob = new Blob([data], { type: 'image/jpeg' });
-            course.thumbnail = URL.createObjectURL(blob);
-            
-           });
-        }
         
       }
     ).catch(error=>console.log(error))
@@ -42,7 +35,11 @@ export class TeacherdashboardComponent implements OnInit {
   }
 
 
+  isChatbotVisible = false;
 
+  toggleChatbot() {
+    this.isChatbotVisible = !this.isChatbotVisible;
+  }
  
 
   

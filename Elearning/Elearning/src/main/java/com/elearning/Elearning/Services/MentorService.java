@@ -1,5 +1,7 @@
 package com.elearning.Elearning.Services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.elearning.Elearning.Classes.FileUtils;
 import com.elearning.Elearning.Entities.Course;
 import com.elearning.Elearning.Entities.Mentor;
@@ -9,15 +11,20 @@ import com.elearning.Elearning.Repositories.CourseRepository;
 import com.elearning.Elearning.Repositories.MentorRepository;
 import com.elearning.Elearning.Repositories.UserRepository;
 import com.elearning.Elearning.Repositories.VideoRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class MentorService {
+
+    Dotenv dotenv = Dotenv.load();
+
     @Autowired
     private MentorRepository mentorRepository;
 
@@ -70,19 +77,25 @@ public class MentorService {
     public void createCourse(Long id, String coursename, String coursedescription, String courseduration, MultipartFile thumbnail, MultipartFile video) throws IOException {
         Mentor mentor = mentorRepository.findByuserId(id);
 
+        Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
         Video addvideo = new Video();
         Course course = new Course();
 
         course.setCoursename(coursename);
         course.setCoursedescription(coursedescription);
         course.setCourseduration(courseduration);
-        course.setThumbnail(thumbnail.getBytes());
+        Map responseMapThumbnail = cloudinary.uploader().upload(thumbnail.getBytes(),ObjectUtils.emptyMap());
+        course.setThumbnail(responseMapThumbnail.get("url").toString());
         course.setMentor(mentor);
 
         Course updatedCourse = courseRepository.saveAndFlush(course);
 
         addvideo.setFilename(video.getOriginalFilename());
-        addvideo.setFileData(video.getBytes());
+
+
+        Map responseMap = cloudinary.uploader().upload(video.getBytes(), ObjectUtils.asMap("resource_type", "video"));
+        String videoUploadURL = responseMap.get("url").toString();
+        addvideo.setFileURL(videoUploadURL);
         addvideo.setCourse(updatedCourse);
 
         videoRepository.save(addvideo);

@@ -1,11 +1,9 @@
 package com.elearning.Elearning.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,6 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class CourseStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,4 +27,6 @@ public class CourseStatus {
     @JoinColumn(name = "studentId")
     private Student student;
 
+    @ElementCollection
+    private List<VideoCompletion> videoCompletionList = new ArrayList<VideoCompletion>();
 }

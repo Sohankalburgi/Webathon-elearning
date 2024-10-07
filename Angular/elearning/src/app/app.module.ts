@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ImageCropperComponent } from 'ngx-image-cropper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -29,14 +29,15 @@ import { VideoplayComponent } from './Components/videoplay/videoplay/videoplay.c
     CourseregisterComponent,
     SearchComponent,
     VideoplayComponent,
-  
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ImageCropperComponent, 
   ],
   providers: [],
   bootstrap: [AppComponent]

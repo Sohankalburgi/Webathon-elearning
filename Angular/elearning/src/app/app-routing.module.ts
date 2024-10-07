@@ -11,6 +11,10 @@ import { VideoplayComponent } from './Components/videoplay/videoplay/videoplay.c
 
 const routes: Routes = [
   {
+    path:'',
+    component:DashboardComponent
+  }
+  ,{
     path: 'login',
     component: LoginComponent
   },

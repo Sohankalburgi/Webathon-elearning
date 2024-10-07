@@ -19,9 +19,9 @@ public class Video {
 
     private String filename;
 
-    @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] fileData;
+
+    @Column(columnDefinition = "TEXT")
+    private String fileURL;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore

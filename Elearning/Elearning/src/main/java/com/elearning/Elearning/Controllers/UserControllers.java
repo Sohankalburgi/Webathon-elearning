@@ -46,5 +46,15 @@ public class UserControllers {
         return  userService.getId(email);
     }
 
+    @GetMapping("/getRole")
+    public ResponseEntity<ResponseMessage> getRoleByUserId(@RequestParam Long userId){
+        String role =  userService.getRole(userId);
+        System.out.println("this is from string role"+role);
+        if(role!=null){
+            return new ResponseEntity<>(new ResponseMessage(role),HttpStatus.FOUND);
+        }
+        return new ResponseEntity<>(new ResponseMessage(null),HttpStatus.NOT_FOUND);
+    }
+
 
 }

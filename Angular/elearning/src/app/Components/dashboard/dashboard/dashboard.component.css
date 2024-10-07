@@ -44,13 +44,6 @@ a {
     padding-left: 1rem;
 }
 
-a:hover {
-    color: #fff;
-    background-color: #ff6347; /* Red-orange color */
-    box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.5); /* Red-orange box shadow */
-    padding: 0.4rem;
-    
-}
 
 a::before {
     content: '';
@@ -142,8 +135,14 @@ footer {
     background-color: #aaa;
   }
   
+
+
   .card {
-    margin: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-open{
+    display: flexbox;
+    width: fit-content;
   }

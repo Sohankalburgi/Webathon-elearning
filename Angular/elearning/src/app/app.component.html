@@ -17,8 +17,8 @@
             </li>
   
   
-            <li class="nav-item" >
-              <a class="nav-link" routerLink="/login"  routerLinkActive="active">SignUp / SignIn</a>
+            <li class="nav-item" *ngIf="!isLoggedIn" >
+              <a class="nav-link"  routerLink="/login"  routerLinkActive="active">SignUp / SignIn</a>
             </li>
   
     
@@ -27,7 +27,7 @@
           <!-- Green dot for logged-in status -->
           <!-- <span *ngIf="isLoggedIn" class="green-dot"></span> -->
         </div>
-        <a class="nav-link" (click)="logout()"   routerLinkActive="active">Logout</a>
+        <a class="nav-link" *ngIf="isLoggedIn"  (click)="logout()"   routerLinkActive="active">Logout</a>
         <form class="d-flex mx-3" role="search" (submit)="onSubmit(searchInput.value)">
           <input #searchInput class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-warning" type="submit">Search</button>

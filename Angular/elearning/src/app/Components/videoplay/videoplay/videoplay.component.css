@@ -1,0 +1,57 @@
+.custom-checkbox {
+    transform: scale(1.4); /* Adjust the scale value for desired size */
+    width: 20px;
+    height: 20px;
+  }
+  #add {
+    display: none;
+}
+
+/* Style for the custom button */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+    text-align: center;
+    font-size: 1.0rem;
+}
+
+.custom-file-upload:hover {
+    background-color: #218838; /* Darker shade for hover */
+}
+
+.scrolling-wrapper {
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .scrolling-wrapper:hover{
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scrolling-wrapper::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    background-color: #f5f5f5;
+  }
+  
+  .scrolling-wrapper::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+  
+  .scrolling-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+  }

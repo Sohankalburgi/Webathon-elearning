@@ -22,14 +22,20 @@ export class SearchComponent implements OnInit {
     });
     this.searchservice.getSearch(this.search).then(data=>{
       this.courses = data.data;
+      console.log(this.courses)
     })
   }
   registercoursebystudent(courseId:any){
     console.log(courseId)
+    if(this.userId===null){
+      alert('Please Login/Register from your account')
+      this.router.navigate(['/login'])
+    }
+    
     this.searchservice.courseRegister(courseId,this.userId).then(data=>{
       console.log(data);
       this.router.navigate([`/dashboard/${this.userId}`])
-    }).catch(error=>console.log(error));
+    }).catch(error=>alert(error.response.data.message));
   }
 
     

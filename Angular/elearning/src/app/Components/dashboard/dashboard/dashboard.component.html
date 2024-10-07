@@ -1,70 +1,121 @@
-<div class="mt-3 mx-2">
-    <img class="img-fluid h-50 col-8 shadow-img" id="a" src="https://droidmodders.com/content/images/2022/01/online-education-jpeg-1024x454.jpg" alt="">
-</div>
+<div class="row gap-0">
+  <div class="col-8">
+    <div class="mt-3 mx-2">
+      <img
+        class="img-fluid h-50 shadow-img"
+        id="a"
+        src="https://droidmodders.com/content/images/2022/01/online-education-jpeg-1024x454.jpg"
+        alt=""
+      />
+    </div>
 
-<div class="row mt-3 mx-2">
-    <div class="col-8 card shadow p-3">
-      <h4 class="card-title mb-3 mt-2">Course Registered</h4>
-      <div class="scrolling-wrapper">
-        <div *ngFor="let course of courses; let i = index" class="card" style="width: 18rem; display: inline-block; margin: 10px;">
-          <img [src]="course.course.thumbnail" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Course Id: {{ course.course.courseId }}</h5>
-            <h5 class="card-title">Course Name: {{ course.course.coursename }}</h5>
-            <p class="card-text"><strong>Course Duration: {{ course.course.courseduration }} Hours</strong></p>
-            <p class="card-text"><strong>Course Completion: {{ course.status}} %</strong></p>
-            <a  class="btn btn-primary w-100" routerLink="/video/{{course.course.courseId}}">Open</a>
-            
+    <div class="row mt-3 mx-2">
+      <div class="col-12 card shadow">
+        <div class="mb-4">
+          <h4 class="card-title mb-3 mt-2">Course Uploaded</h4>
+          <button
+            class="btn btn-success w-100"
+            routerLink="/teacherdash/{{ userId }}/courseregister"
+          >
+            Add Course
+          </button>
+        </div>
+        <div class="scrolling-wrapper">
+          <div class="btn-open" style="height: 8rem" *ngIf="!courses">
+            <h3>No Courses Registered</h3>
+          </div>
+
+          <div
+            *ngFor="let course of courses; let i = index"
+            class="card btn-open"
+          >
+            <img
+              src="{{ course.course.thumbnail }}"
+              class="card-img-top"
+              style="width: 22rem"
+              alt="thumbnail"
+            />
+            <!-- Corrected the binding syntax -->
+            <div class="card-body d-flex flex-column">
+              <p class="card-title">
+                <strong> Course Name : </strong> {{ course.course.coursename }}
+              </p>
+              <p class="card-title">
+                <Strong>Course Duration : </Strong
+                >{{ course.course.courseduration }} Hours
+              </p>
+              <p class="card-title">
+                <strong>Number Of Resources :</strong>
+                {{ course.course.videos.length }} resource
+              </p>
+
+              <strong>Completion :</strong>
+              <div
+                class="progress mb-2"
+                role="progressbar"
+                aria-label="Example with label"
+                [attr.aria-valuenow]="course.status"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div class="progress-bar" [ngStyle]="{width: course.status +'%'}">
+                  {{ course.status }}%
+                </div>
+              </div>
+              <a
+                class="btn btn-primary"
+                routerLink="/video/{{ course.course.courseId }}"
+                >Open</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
 
-<div class="card1">
-    <div class="container">
-        <h2>Trending Topics</h2>
-        <a href="https://en.wikipedia.org/wiki/Artificial_intelligence">Artificial Intelligence</a><br>
-        <a href="https://en.wikipedia.org/wiki/Blockchain">Blockchain</a><br>
-        <a href="https://en.wikipedia.org/wiki/Renewable_energy">Renewable Energy Consumption</a><br>
-        <a href="https://en.wikipedia.org/wiki/List_of_climate_change_initiatives">Climate Change Initiative</a><br>
-        <a href="https://en.wikipedia.org/wiki/Internet_of_things">Internet of Things (IoT)</a><br>
-        <a href="https://en.wikipedia.org/wiki/Big_data">Big Data</a><br>
-        <a href="https://en.wikipedia.org/wiki/Virtual_reality">Virtual Reality (VR)</a><br>
-        <a href="https://en.wikipedia.org/wiki/Cryptocurrency">Cryptocurrency</a><br>
+  <div class="col-4 mt-3 px-4">
+    <div class="card d-flex flex-column justify-content-center">
+      <div>
+        <button (click)="toggleChatbot()" class="btn btn-warning w-100 btn-lg">
+          Open Chatbot
+        </button>
+      </div>
+      <div class="d-flex ">
+        <iframe
+          *ngIf="isChatbotVisible"
+          src="https://www.chatbase.co/chatbot-iframe/czmTlrHRIZCnATP_LEo1U"
+          width="100%"
+          style="height: 100vh"
+          frameborder="2"
+          class="mx-3"
+        ></iframe>
+      </div>
+     
     </div>
-</div>
+  </div>
 
-<!-- Button or Icon to open Chatbot -->
-<button (click)="toggleChatbot()" class="btn btn-info mx-4 " style="width: 65%;">Open Chatbot</button>
+  <!-- Chatbot iframe -->
 
-<!-- Chatbot iframe -->
-<iframe
-    *ngIf="isChatbotVisible"
-    src="https://www.chatbase.co/chatbot-iframe/czmTlrHRIZCnATP_LEo1U"
-    width="50%"
-    style="height: 100%; min-height: 300px"
-    frameborder="2" class="mx-3"
-></iframe>
-
-<div class="Footer">
+  <div class="Footer">
     <footer>
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>About Us</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="footer-section contact">
-                <h3>Contact Us</h3>
-                <p>Email: contactexample.com<br>Phone: +1234567890</p>
-            </div>
-            <div class="footer-section help">
-                <h3>Help</h3>
-                <p>FAQs<br>Support</p>
-            </div>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>About Us</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 CodeBrigade</p>
+        <div class="footer-section contact">
+          <h3>Contact Us</h3>
+          <p>Email: contactexample.com<br />Phone: +1234567890</p>
         </div>
+        <div class="footer-section help">
+          <h3>Help</h3>
+          <p>FAQs<br />Support</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CodeBrigade</p>
+      </div>
     </footer>
+  </div>
 </div>

@@ -27,7 +27,7 @@ public class CourseControllers {
     public ResponseEntity<?> getCourseById(@PathVariable Long id){
         try{
             Course course = courseService.getCourseById(id);
-            return new ResponseEntity<>(course, HttpStatus.FOUND);
+            return new ResponseEntity<>(course, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
@@ -35,12 +35,11 @@ public class CourseControllers {
     }
 
     @GetMapping("/getImage/{id}")
-    public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws Exception {
+    public ResponseEntity<ResponseMessage> getImage(@PathVariable Long id) throws Exception {
         // retrieve the image from the database or file system
-        byte[] imageBytes = courseService.getCourseById(id).getThumbnail();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+        String imageBytes = courseService.getCourseById(id).getThumbnail();
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(imageBytes),HttpStatus.OK);
     }
 
 
@@ -55,7 +54,7 @@ public class CourseControllers {
     }
 
 
-    @PostMapping("/course/{id}/uploadvideofile")
+    @PostMapping(value = "/course/{id}/uploadvideofile",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadVideoFile(@PathVariable Long id, @RequestPart MultipartFile file){
         try{
             courseService.uploadVideo(id,file);

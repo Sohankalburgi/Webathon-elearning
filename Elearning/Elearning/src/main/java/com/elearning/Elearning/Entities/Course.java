@@ -38,9 +38,9 @@ public class Course {
     @JoinColumn(name = "mentor")
     private Mentor mentor;
 
-    @Lob
-    @Column(name = "thumbnail",columnDefinition = "LONGBLOB")
-    private byte[] thumbnail;
+
+    @Column(name = "thumbnail",columnDefinition = "TEXT")
+    private String thumbnail;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "course")
     private List<Video> videos;
